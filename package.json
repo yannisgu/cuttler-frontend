@@ -1,0 +1,6 @@
+{
+  "name": "cuttler-frontend",
+  "dependencies": {
+    "gulp": "^3.8.8"
+  }
+}

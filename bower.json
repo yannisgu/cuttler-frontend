@@ -1,0 +1,9 @@
+{
+  "name": "cuttler-frontend",
+  "version": "0.0.0",
+  "homepage": "https://github.com/yannisgu/cuttler-frontend",
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "ember": "~1.7.0"
+  }
+}
