@@ -1,9 +1,13 @@
 @import 'colors.less';
+@import 'columns.less';
+
+@total-width: 100%;
 
 
 body,html {
   margin: 0;
   padding: 0;
+  font-family: Helveticy, sans-serif;
 }
 
 header {
@@ -11,4 +15,40 @@ header {
     background-color: @foreground;
     height: 4em;
     width: 100%;
+
+    .logo {
+      &:before {
+        .column(2)
+      }
+
+      img {
+        height: 4em;
+      }
+
+      .column(2)
+    }
+
+    nav {
+      ul {
+        margin: 0;
+        padding: 0;
+        li {
+          list-style-type: none;
+          float: left;
+          margin-left: 1.2em;
+          a {
+            @menu-font-size: 1.3em;
+            color: @background;
+            font-size: @menu-font-size;
+            display: inline-block;
+            line-height: (4em / @menu-font-size);
+            height: (4em / @menu-font-size);
+            text-decoration: none;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .column(4)
+    }
 }
