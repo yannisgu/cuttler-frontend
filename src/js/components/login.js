@@ -1,3 +1,13 @@
-App = (function(app) {
+var LoginApp = (function(app) {
+  var loginApp = Ember.Application.create(
+    {
+      rootElement: "#login"
+    }
+  );
 
-})(window.App || {});
+  loginApp.ApplicationView = Ember.View.extend({
+    templateName: 'loginAppView'
+  });
+  
+  return loginApp;
+})(window.App);

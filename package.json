@@ -8,5 +8,8 @@
     "gulp-plumber": "^0.6.6",
     "open": "0.0.5",
     "serve-static": "^1.7.0"
+  },
+  "devDependencies": {
+    "gulp-ember-templates": "^0.5.2"
   }
 }

@@ -8,7 +8,7 @@ var concat = require('gulp-concat');
 gulp.task('default', ['livereload', 'build', 'watch', 'serve'],function() {
 });
 
-gulp.task('build', ['html', 'vendor', 'js', 'less', 'image'],function() {
+gulp.task('build', ['html', 'vendor', 'js','hbs', 'less', 'image'],function() {
 });
 
 
@@ -59,6 +59,18 @@ gulp.task('less', function () {
   }));
 });
 
+var concat = require('gulp-concat');
+var emberTemplates = require('gulp-ember-templates');
+
+gulp.task('hbs', function () {
+  gulp.src('src/templates/**/*.hbs')
+    .pipe(plumber())
+    .pipe(emberTemplates())
+    .pipe(concat('templates.js')) // make sure to only do concat after
+    .pipe(gulp.dest('build/assets/js'));
+});
+
+
 
 gulp.task('watch', function() {
   gulp.watch([
@@ -75,7 +87,7 @@ gulp.task('watch', function() {
   ], ['html'])
   gulp.watch([
     'src/templates/**/*.hbs'
-  ], ['templates']);
+  ], ['hbs']);
 });
 
 var exec = require('child_process').exec,

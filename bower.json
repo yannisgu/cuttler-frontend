@@ -4,7 +4,6 @@
   "homepage": "https://github.com/yannisgu/cuttler-frontend",
   "dependencies": {
     "jquery": "~2.1.1",
-    "ember": "~1.7.0",
-    "min": "*"
+    "ember": "~1.7.0"
   }
 }

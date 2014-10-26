@@ -11,27 +11,25 @@ body,html {
 }
 
 header {
+    @header-height: 4em;
+    height: @header-height;
     color: @background;
     background-color: @foreground;
-    height: 4em;
     width: 100%;
 
     .logo {
-      &:before {
-        .column(2)
-      }
-
       img {
         height: 4em;
       }
-
-      .column(2)
+      float: left;
+      .push(2);
     }
 
     nav {
       ul {
         margin: 0;
         padding: 0;
+        .clearfix();
         li {
           list-style-type: none;
           float: left;
@@ -48,7 +46,44 @@ header {
           }
         }
       }
-
-      .column(4)
+      .pull-absolute(4);
     }
+
+    #login {
+      .column(2);
+      .pull(2);
+      float: right;
+
+      button {
+        margin-top: ((@header-height / @button-font-size) - 2 * @button-border - @button-height) / 2;
+        border-color: @background;
+      }
+    }
+}
+
+
+@button-height: 2em;
+@button-font-size: 1.2em;
+@button-border: 0.2em;
+
+button {
+  height: @button-height;
+  border: @button-border solid @foreground;
+  background-color: @background;
+  color: @font;
+  font-weight: bold;
+  font-size: @button-font-size;
+  padding: 0 0.5em;
+  border-radius: 0.5em;
+  float: right;
+  margin-left: 0.5em;
+  outline:none;
+  cursor: pointer;
+
+  &.second {
+    border-color: @background;
+    background-color: @foreground;
+    color: @background;
+  }
+
 }
