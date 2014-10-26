@@ -5,7 +5,7 @@ window.App = (function(){
     }
   );
 
-  app.LoginView = Ember.View.extend({
+  app.ApplicationView = Ember.View.extend({
     templateName: 'login'
   });
 
