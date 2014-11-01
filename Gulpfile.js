@@ -22,7 +22,7 @@ gulp.task('html', function() {
 })
 
 gulp.task('vendor', function() {
-  gulp.src(['bower_components/**/*.js','bower_components/**/*.css']).
+  gulp.src(['bower_components/**/*.js','bower_components/**/*.map', 'bower_components/**/*.css']).
   pipe(plumber()).
   pipe(gulp.dest('build/assets/vendor')).
   pipe(livereload({

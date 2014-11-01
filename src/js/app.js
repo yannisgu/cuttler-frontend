@@ -5,9 +5,17 @@ window.App = (function(){
     }
   );
 
-  app.ApplicationView = Ember.View.extend({
-    templateName: 'login'
+  app.IndexRoute = Ember.Route.extend({
+    beforeModel: function() {
+      this.transitionTo('login');
+    }
   });
+
+  app.Router.map(function() {
+    this.route("login");
+    this.route("register");
+  });
+
 
   return app;
 })();

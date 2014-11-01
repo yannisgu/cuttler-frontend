@@ -8,6 +8,11 @@ var LoginApp = (function(app) {
   loginApp.ApplicationView = Ember.View.extend({
     templateName: 'loginAppView'
   });
-  
+
+
+  loginApp.Router.map(function() {
+    this.route("joker", { path: '/:slug' });
+  });
+
   return loginApp;
 })(window.App);

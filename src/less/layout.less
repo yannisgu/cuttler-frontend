@@ -15,6 +15,10 @@ a{
   text-decoration: underline;
 }
 
+h1{
+  color: @foreground;
+}
+
 header {
     @header-height: 4em;
     height: @header-height;
@@ -61,8 +65,9 @@ header {
       float: right;
 
       @login-button-height: 2em;
-      button {
+      button, .button {
         height: @login-button-height;
+        line-height: @login-button-height;
         margin-top: ((@header-height / @button-font-size) - 2 * @button-border - @login-button-height) / 2;
         border-color: @background;
         float: right;
@@ -75,7 +80,7 @@ header {
 @button-font-size: 1.2em;
 @button-border: 0.2em;
 
-button {
+button, .button {
   height: @button-height;
   border: @button-border solid @foreground;
   background-color: @background;
@@ -87,6 +92,7 @@ button {
   margin-left: 0.5em;
   outline:none;
   cursor: pointer;
+  text-decoration: none;
 
   &.second {
     border-color: @background;
@@ -105,8 +111,12 @@ button {
 .row {
   margin: 1em 0;
 
+  h1 {
+    text-align: center;
+  }
+
   .label {
-    .column(3);
+    .column(4);
     text-align: right;
     float: left;
     display: block;
@@ -114,7 +124,7 @@ button {
     box-sizing: border-box;
   }
   .field {
-    .column(6);
+    .column(4);
 
     input.text {
       width: 100%;
@@ -131,8 +141,11 @@ button {
 
     }
   }
+
+
+
   button, .field {
-    .push(3);
+    .push(4);
     display: block;
 
     float: none;
