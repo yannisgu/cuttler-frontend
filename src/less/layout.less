@@ -10,6 +10,11 @@ body,html {
   font-family: Helveticy, sans-serif;
 }
 
+a{
+  color: blue;
+  text-decoration: underline;
+}
+
 header {
     @header-height: 4em;
     height: @header-height;
@@ -55,15 +60,18 @@ header {
       .pull(2);
       float: right;
 
+      @login-button-height: 2em;
       button {
-        margin-top: ((@header-height / @button-font-size) - 2 * @button-border - @button-height) / 2;
+        height: @login-button-height;
+        margin-top: ((@header-height / @button-font-size) - 2 * @button-border - @login-button-height) / 2;
         border-color: @background;
+        float: right;
       }
     }
 }
 
 
-@button-height: 2em;
+@button-height: 1.7em;
 @button-font-size: 1.2em;
 @button-border: 0.2em;
 
@@ -76,7 +84,6 @@ button {
   font-size: @button-font-size;
   padding: 0 0.5em;
   border-radius: 0.5em;
-  float: right;
   margin-left: 0.5em;
   outline:none;
   cursor: pointer;
@@ -96,14 +103,14 @@ button {
 }
 
 .row {
-  margin: 0.5em 0;
+  margin: 1em 0;
 
   .label {
-    .column(6);
+    .column(3);
     text-align: right;
-    //font-size: 1.2em;
-    line-height: (1.4 * 1.5em);
-    padding: 1px 4em;
+    float: left;
+    display: block;
+    line-height: 2em;
     box-sizing: border-box;
   }
   .field {
@@ -111,9 +118,33 @@ button {
 
     input.text {
       width: 100%;
-      font-size: 1.4em;
+      padding: 0.5em;
+      border-color: #AAA;
+      border-width: 1px;
+      border-style: solid;
+      outline: none;
+      border-radius: 6px;
+
+      &:hover, &:focus {
+        border-color: @foreground;
+      }
 
     }
   }
+  button, .field {
+    .push(3);
+    display: block;
+
+    float: none;
+  }
+  button {
+    float: left;
+  }
+
+  .button-link {
+    margin-left: 1em;
+    line-height: @button-height * @button-font-size;
+  }
+
   .clearfix()
 }
