@@ -11,9 +11,20 @@ window.App = (function(){
     }
   });
 
+
   app.Router.map(function() {
     this.route("login");
     this.route("register");
+  });
+
+  app.LoginController = Ember.ObjectController.extend({
+     actions: {
+      login: function() {
+        LoginService.login(this.get('username'), this.get('password')).
+        then(function(){
+        });
+      }
+    }
   });
 
 

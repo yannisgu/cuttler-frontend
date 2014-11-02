@@ -5,6 +5,15 @@ var LoginApp = (function(app) {
     }
   );
 
+
+  loginApp.ApplicationRoute = Ember.Route.extend({
+    setupController: function(controller) {
+      // `controller` is the instance of ApplicationController
+      controller.set('model', LoginService);
+    }
+  });
+
+
   loginApp.ApplicationView = Ember.View.extend({
     templateName: 'loginAppView'
   });
@@ -13,6 +22,7 @@ var LoginApp = (function(app) {
   loginApp.Router.map(function() {
     this.route("joker", { path: '/:slug' });
   });
+
 
   return loginApp;
 })(window.App);

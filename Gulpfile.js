@@ -31,7 +31,7 @@ gulp.task('vendor', function() {
 })
 
 gulp.task('js', function() {
-  gulp.src('src/js/**/*.js').
+  gulp.src(['src/js/services/*.js','src/js/components/*.js', 'src/js/*.js']).
   pipe(plumber()).
   pipe(concat('main.js')).
   pipe(gulp.dest('build/assets/js')).

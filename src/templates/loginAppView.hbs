@@ -1,3 +1,6 @@
-
-<a class="button second" href="/#/register">Register</button>
-<a class="button" href="/#/login">Login</button>
+{{#if model.isLoggedIn}}
+  Welcome!
+{{else}}
+  <a class="button second" href="/#/register">Register</a>
+  <a class="button" href="/#/login">Login</a>
+{{/if}}
