@@ -9,6 +9,13 @@ window.LoginService = (function()  {
           _this.set("isLoggedIn", true)
           Ember.run(null, resolve);
       });
+    },
+    register : function(user) {
+        console.log(user);
+        var _this = this;
+        return new Ember.RSVP.Promise(function(resolve, reject) {
+            Ember.run(null, resolve);
+      });
     }
   });
 

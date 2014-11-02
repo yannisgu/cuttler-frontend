@@ -5,25 +5,25 @@
   <div class="row">
     <span class="label">Username</span>
     <span class="field">
-      <input class="text" type="text" />
+      {{input type="text" class="text" value=username}}
     </span>
   </div>
   <div class="row">
     <span class="label">Email</span>
     <span class="field">
-      <input class="text" type="text" />
+      {{input type="text" class="text" value=email}}
     </span>
   </div>
   <div class="row">
     <span class="label">Password</span>
     <span class="field">
-      <input class="text" type="password" />
+      {{input type="password" class="text" value=password}}
     </span>
   </div>
   <div class="row">
     <span class="label">Password confirmation</span>
     <span class="field">
-      <input class="text" type="password" />
+      {{input type="password" class="text" value=password-confirm}}
     </span>
   </div>
   <div class="row">
@@ -32,40 +32,40 @@
   <div class="row">
     <span class="label">Firstname</span>
     <span class="field">
-      <input class="text" type="text" />
+      {{input type="text" class="text" value=firstname}}
     </span>
   </div>
   <div class="row">
     <span class="label">Lastname</span>
     <span class="field">
-      <input class="text" type="text" />
+      {{input type="text" class="text" value=lastname}}
     </span>
   </div>
   <div class="row">
     <span class="label">Adress</span>
     <span class="field">
-      <input class="text" type="text" />
+      {{input type="text" class="text" value=adress}}
     </span>
   </div>
   <div class="row">
     <span class="label">ZIP</span>
     <span class="field">
-      <input class="text" type="text" />
+      {{input type="text" class="text" value=zip}}
     </span>
   </div>
   <div class="row">
     <span class="label">Location</span>
     <span class="field">
-      <input class="text" type="text" />
+      {{input type="text" class="text" value=location}}
     </span>
   </div>
   <div class="row">
     <span class="label">Country</span>
     <span class="field">
-      <input class="text" type="text" />
+      {{input type="text" class="text" value=country}}
     </span>
   </div>
   <div class="row">
-    <button>Register</button>
+    <button {{action 'register'}}>Register</button>
   </div>
 </div>

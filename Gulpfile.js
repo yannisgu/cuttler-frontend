@@ -59,13 +59,28 @@ gulp.task('less', function () {
   }));
 });
 
+var handlebars = require('gulp-handlebars');
+var wrap = require('gulp-wrap');
+var declare = require('gulp-declare');
 var concat = require('gulp-concat');
-var emberTemplates = require('gulp-ember-templates');
 
 gulp.task('hbs', function () {
   gulp.src('src/templates/**/*.hbs')
-    .pipe(plumber())
-    .pipe(emberTemplates())
+   .pipe(handlebars({
+      handlebars: require('ember-handlebars')
+    }))
+    .pipe(wrap('Ember.Handlebars.template(<%= contents %>)'))
+    .pipe(declare({
+      namespace: 'Ember.TEMPLATES',
+      noRedeclare: true, // Avoid duplicate declarations
+      processName: function(filePath) {
+        // Allow nesting based on path using gulp-declare's processNameByPath()
+        // You can remove this option completely if you aren't using nested folders
+        // Drop the source/templates/ folder from the namespace path by removing it from the filePath
+        console.log(filePath)
+        return declare.processNameByPath(filePath).replace('src.templates.', '');
+      }
+    }))
     .pipe(concat('templates.js')) // make sure to only do concat after
     .pipe(gulp.dest('build/assets/js'));
 });
