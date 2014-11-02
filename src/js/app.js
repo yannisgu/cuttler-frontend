@@ -15,13 +15,18 @@ window.App = (function(){
   app.Router.map(function() {
     this.route("login");
     this.route("register");
+    this.route("octopusTenants");
   });
 
   app.LoginController = Ember.ObjectController.extend({
+    username: "",
+    password: "",
      actions: {
       login: function() {
+        _this = this
         LoginService.login(this.get('username'), this.get('password')).
         then(function(){
+          _this.transitionTo('octopusTenants');
         });
       }
     }
