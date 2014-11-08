@@ -22,9 +22,11 @@ window.App = (function(){
     this.route("login");
     this.route("register", {path: "/register"});
     this.route("registerWelcome", {path: "/register/welcome"});
-    this.resource('octopus', { path: '/octopus' }, function() {
+    this.resource('octopus', {path: "/octopus"}, function() {
+        this.route("edit", {path: "/:id"});
     });
   });
+
 
 
     app.LoginRoute = Ember.Route.extend({
@@ -113,6 +115,37 @@ window.App = (function(){
       }
     }
   });
+
+    app.OctopusIndexRoute = Ember.Route.extend({
+      model: function() {
+        return this.store.find('octopusTenant');
+      }
+    });
+
+    app.OctopusEditRoute = Ember.Route.extend({
+        model: function(params) {
+            return this.store.find('post', params.id);
+        }
+    });
+
+    app.OctopusTenant = DS.Model.extend({
+      name: DS.attr('string'),
+      mainUrl :  DS.attr('string')
+    });
+
+    app.OctopusTenant.reopenClass({
+      FIXTURES: [
+        { id: 1, name: 'Dummy ', mainUrl: 'https://dummy.mycuttle.com' },
+        { id: 2, name: 'Lorem ', mainUrl: 'https://lorem.mycuttle.com' }
+      ]
+    });
+
+    app.OctopusIndexController = Ember.ArrayController.extend({
+    });
+
+    app.Store = DS.Store.extend({
+      adapter: DS.FixtureAdapter
+    });
 
   return app;
 })();

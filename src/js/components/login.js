@@ -23,6 +23,9 @@ var LoginApp = (function(app) {
     this.route("joker", { path: '/:slug' });
   });
 
+    loginApp.Store = DS.Store.extend({
+      adapter: DS.FixtureAdapter
+    });
 
   return loginApp;
 })(window.App);

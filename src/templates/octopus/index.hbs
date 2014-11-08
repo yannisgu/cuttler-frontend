@@ -1,0 +1,9 @@
+<h1>Octopus tenants</h1>
+<table>
+    {{#each model}}
+        <tr>
+            <td>{{#link-to 'octopus.edit' this}}{{name}}{{/link-to}}<td>
+            <td><a {{bind-attr href=mainUrl}}>{{mainUrl}}</a><td>
+        </tr>
+    {{/each}}
+</table>
