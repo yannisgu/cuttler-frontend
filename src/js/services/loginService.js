@@ -6,8 +6,13 @@ window.LoginService = (function()  {
       console.log(password);
       var _this = this;
       return new Ember.RSVP.Promise(function(resolve, reject) {
-          _this.set("isLoggedIn", true)
-          Ember.run(null, resolve);
+          if(username == "demo" && password == "demo") {
+              _this.set("isLoggedIn", true)
+              Ember.run(null, resolve);
+          }
+          else {
+              Ember.run(null, reject);
+          }
       });
     },
     register : function(user) {

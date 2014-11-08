@@ -66,6 +66,7 @@ var concat = require('gulp-concat');
 
 gulp.task('hbs', function () {
   gulp.src('src/templates/**/*.hbs')
+    .pipe(plumber())
    .pipe(handlebars({
       handlebars: require('ember-handlebars')
     }))

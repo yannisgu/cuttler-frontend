@@ -26,16 +26,26 @@ window.App = (function(){
     });
   });
 
+
+    app.LoginRoute = Ember.Route.extend({
+        model: function() {
+            return {
+              username: "",
+              password: "",
+            }
+        }
+    })
   app.LoginController = Ember.ObjectController.extend({
-    username: "",
-    password: "",
-     actions: {
-      login: function() {
-        _this = this;
-        LoginService.login(this.get('username'), this.get('password')).
-        then(function(){
-          _this.transitionTo('octopusTenants');
-        });
+      loginFailed : false,
+      actions: {
+          login: function() {
+            _this = this;
+            LoginService.login(this.model.username, this.model.password).
+            then(function(){
+              _this.transitionTo('octopusTenants');
+          }, function() {
+              _this.set("loginFailed", true)
+          });
       }
     }
   });

@@ -6,5 +6,10 @@
             <button type="submit" {{action "login"}}>Login</button>
             <span class="button-link">{{#link-to 'register'}}Don't have an account? Register!{{/link-to}}</span>
         </div>
+        {{#if loginFailed}}
+            <div class="row">
+                Login failed.
+            </div>
+        {{/if}}
      {{/form-for}}
 </div>
