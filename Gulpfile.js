@@ -78,7 +78,7 @@ gulp.task('hbs', function () {
         // You can remove this option completely if you aren't using nested folders
         // Drop the source/templates/ folder from the namespace path by removing it from the filePath
         console.log(filePath)
-        return declare.processNameByPath(filePath).replace('src.templates.', '');
+        return declare.processNameByPath(filePath).replace('src.templates.', '').replace('.', '/');
       }
     }))
     .pipe(concat('templates.js')) // make sure to only do concat after

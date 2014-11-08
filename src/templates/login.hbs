@@ -1,18 +1,10 @@
 <div class="login">
-  <div class="row">
-    <span class="label">Username</span>
-    <span class="field">
-      {{input type="text" class="text" value=username}}
-    </span>
-  </div>
-  <div class="row">
-    <span class="label">Password</span>
-    <span class="field">  
-      {{input type="password" class="text" value=password}}
-    </span>
-  </div>
-  <div class="row">
-    <button {{action 'login'}}>Login</button>
-    <span class="button-link">{{#link-to 'register'}}Don't have an account? Register!{{/link-to}}</span>
-  </div>
+    {{#form-for model wrapper='cuttle'}}
+        {{input username}}
+        {{input password}}
+        <div class="row">
+            <button type="submit" {{action "login"}}>Login</button>
+            <span class="button-link">{{#link-to 'register'}}Don't have an account? Register!{{/link-to}}</span>
+        </div>
+     {{/form-for}}
 </div>

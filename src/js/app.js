@@ -1,4 +1,10 @@
 window.App = (function(){
+    Ember.EasyForm.Config.registerWrapper('cuttle', {
+        inputClass: 'row',
+        inputTemplate: 'forms/input',
+        labelClass: 'label'
+    });
+
   var app = Ember.Application.create(
     {
       rootElement: "#application"
@@ -16,7 +22,8 @@ window.App = (function(){
     this.route("login");
     this.route("register", {path: "/register"});
     this.route("registerWelcome", {path: "/register/welcome"});
-    this.route("octopusTenants");
+    this.resource('octopus', { path: '/octopus' }, function() {
+    });
   });
 
   app.LoginController = Ember.ObjectController.extend({
@@ -60,7 +67,6 @@ window.App = (function(){
       }
     }
   });
-
 
   return app;
 })();
