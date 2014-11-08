@@ -1,71 +1,23 @@
 <div class="register">
-  <div class="row">
-    <h1>Account informations</h1>
-  </div>
-  <div class="row">
-    <span class="label">Username</span>
-    <span class="field">
-      {{input type="text" class="text" value=username}}
-    </span>
-  </div>
-  <div class="row">
-    <span class="label">Email</span>
-    <span class="field">
-      {{input type="text" class="text" value=email}}
-    </span>
-  </div>
-  <div class="row">
-    <span class="label">Password</span>
-    <span class="field">
-      {{input type="password" class="text" value=password}}
-    </span>
-  </div>
-  <div class="row">
-    <span class="label">Password confirmation</span>
-    <span class="field">
-      {{input type="password" class="text" value=password-confirm}}
-    </span>
-  </div>
-  <div class="row">
-    <h1>Personal informations</h1>
-  </div>
-  <div class="row">
-    <span class="label">Firstname</span>
-    <span class="field">
-      {{input type="text" class="text" value=firstname}}
-    </span>
-  </div>
-  <div class="row">
-    <span class="label">Lastname</span>
-    <span class="field">
-      {{input type="text" class="text" value=lastname}}
-    </span>
-  </div>
-  <div class="row">
-    <span class="label">Adress</span>
-    <span class="field">
-      {{input type="text" class="text" value=adress}}
-    </span>
-  </div>
-  <div class="row">
-    <span class="label">ZIP</span>
-    <span class="field">
-      {{input type="text" class="text" value=zip}}
-    </span>
-  </div>
-  <div class="row">
-    <span class="label">Location</span>
-    <span class="field">
-      {{input type="text" class="text" value=location}}
-    </span>
-  </div>
-  <div class="row">
-    <span class="label">Country</span>
-    <span class="field">
-      {{input type="text" class="text" value=country}}
-    </span>
-  </div>
-  <div class="row">
-    <button {{action 'register'}}>Register</button>
-  </div>
+    {{#form-for model wrapper="cuttle"}}
+        <div class="row">
+            <h1>Account informations</h1>
+        </div>
+        {{input username}}
+        {{input email}}
+        {{input password}}
+        {{input password-confirmation}}
+        <div class="row">
+            <h1>Personal informations</h1>
+        </div>
+        {{input firstname}}
+        {{input lastname}}
+        {{input adress}}
+        {{input zip}}
+        {{input location}}
+        {{input country}}
+          <div class="row">
+            {{submit Register as="button"}}
+          </div>
+    {{/form-for}}
 </div>

@@ -94,6 +94,11 @@ button, .button {
   cursor: pointer;
   text-decoration: none;
 
+  &:disabled {
+      cursor: initial;
+      background-color: grey;
+  }
+
   &.second {
     border-color: @background;
     background-color: @foreground;

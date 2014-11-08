@@ -42,7 +42,7 @@ window.App = (function(){
             _this = this;
             LoginService.login(this.model.username, this.model.password).
             then(function(){
-              _this.transitionTo('octopusTenants');
+              _this.transitionTo('octopus');
           }, function() {
               _this.set("loginFailed", true)
           });
@@ -50,30 +50,62 @@ window.App = (function(){
     }
   });
 
-  app.RegisterController = Ember.ObjectController.extend({
-    "username": "",
-    "password": "",
-    "email": "",
-    "adress": "",
-    "firstname": "",
-    "lastname": "",
-    "country": "",
-    "zip": "",
-    "location": "",
-    "password-confirm" : "",
-     actions: {
-      register: function() {
-        _this = this;
-        var user = {};
-        var fields = ["username", "password", "email", "adress", "firstname", "lastname", "country","zip", "location"];
-        for(var i = 0; i < fields.length; i++) {
-          var field  = fields[i];
-          user[field] = _this.get(field);
+    app.RegisterRoute = Ember.Route.extend({
+        model: function() {
+            return app.Register.create();
         }
-        LoginService.register(user).
-        then(function() {
-          _this.transitionTo('registerWelcome');
-        });
+    });
+
+    app.Register = Ember.Object.extend(Ember.Validations.Mixin, {
+        "username": "",
+        "password": "",
+        "email": "",
+        "adress": "",
+        "firstname": "",
+        "lastname": "",
+        "country": "",
+        "zip": "",
+        "location": "",
+        "password-confirm" : "",
+          validations: {
+              username: {
+                  presence: true
+              },
+              password: {
+                  presence: true
+              },
+              email: {
+                  presence: true
+              },
+              adress: {
+                  presence: true
+              },
+              firstname: {
+                  presence: true
+              },
+              lastname: {
+                  presence: true
+              },
+              country: {
+                  presence: true
+              },
+              zip: {
+                  presence: true
+              },
+              location: {
+                  presence: true
+              }
+          }
+    });
+
+  app.RegisterController = Ember.ObjectController.extend({
+     actions: {
+      submit: function() {
+          var _this = this;
+          LoginService.register(this.model.user)
+          .then(function() {
+              _this.transitionTo('registerWelcome');
+          });
       }
     }
   });
