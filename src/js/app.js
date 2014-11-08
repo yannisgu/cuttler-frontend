@@ -66,12 +66,16 @@ window.App = (function(){
         "country": "",
         "zip": "",
         "location": "",
-        "password-confirm" : "",
+        "passwordConfirmation" : "",
           validations: {
               username: {
                   presence: true
               },
               password: {
+                  presence: true,
+                 confirmation: true
+                },
+              passwordConfirmation: {
                   presence: true
               },
               email: {
@@ -102,7 +106,7 @@ window.App = (function(){
      actions: {
       submit: function() {
           var _this = this;
-          LoginService.register(this.model.user)
+          LoginService.register(this.model)
           .then(function() {
               _this.transitionTo('registerWelcome');
           });
