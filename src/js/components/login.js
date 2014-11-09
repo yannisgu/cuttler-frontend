@@ -9,8 +9,9 @@ var LoginApp = (function(app) {
   loginApp.ApplicationRoute = Ember.Route.extend({
     setupController: function(controller) {
       // `controller` is the instance of ApplicationController
-      controller.set('model', LoginService);
-    }
+        controller.set('model', LoginService);
+    },
+      location: 'none'
   });
 
 
@@ -20,7 +21,7 @@ var LoginApp = (function(app) {
 
 
   loginApp.Router.map(function() {
-    this.route("joker", { path: '/:slug' });
+    this.route("joker", { path: '/*slug' });
   });
 
     loginApp.Store = DS.Store.extend({

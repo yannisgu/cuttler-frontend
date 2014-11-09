@@ -1,3 +1,8 @@
-Edit
-{{model.name}}
-{{model.mainUrl}}
+{{#form-for model wrapper="cuttle"}}
+    {{input name disabled=isEdit}}
+    {{input adminUsername disabled=isEdit}}
+    {{input adminPassword as="password" disabled=isEdit}}
+    {{#if isNew}}
+        {{submit Create as='button'}}
+    {{/if}}
+{{/form-for}}

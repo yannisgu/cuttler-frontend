@@ -17,14 +17,17 @@ window.App = (function(){
     }
   });
 
+  app.CustomInput = Ember.EasyForm.Input.extend({
+      bindableInputOptions: ['placeholder', 'prompt', 'disabled']
+  });
 
-  app.Router.map(function() {
-    this.route("login");
-    this.route("register", {path: "/register"});
-    this.route("registerWelcome", {path: "/register/welcome"});
-    this.resource('octopus', {path: "/octopus"}, function() {
-        this.route("edit", {path: "/:id"});
-    });
+  Ember.Handlebars.registerHelper('input', function(property, options) {
+      if (arguments.length === 1) {
+          return Ember.Handlebars.helpers['ember-input'].call(this, arguments[0]);
+      }
+      options = Ember.EasyForm.processOptions(property, options);
+      options.hash.isBlock = !!(options.fn);
+      return Ember.Handlebars.helpers.view.call(this, app.CustomInput, options);
   });
 
 
@@ -33,7 +36,7 @@ window.App = (function(){
         model: function() {
             return {
               username: "",
-              password: "",
+              password: ""
             }
         }
     })
@@ -122,10 +125,15 @@ window.App = (function(){
       }
     });
 
+
     app.OctopusEditRoute = Ember.Route.extend({
         model: function(params) {
-            return this.store.find('post', params.id);
+            return this.store.find('octopusTenant', params.id);
         }
+    });
+
+    app.OctopusEditController = Ember.ObjectController.extend({
+        isEdit: true
     });
 
     app.OctopusTenant = DS.Model.extend({
@@ -143,9 +151,47 @@ window.App = (function(){
     app.OctopusIndexController = Ember.ArrayController.extend({
     });
 
+    app.OctopusNewRoute = Ember.Route.extend({
+         model: function() {
+             return this.store.createRecord('octopusTenant');
+         },
+         isNew: true,
+
+        renderTemplate: function() {
+            this.render('octopus/edit');
+        },
+        deactivate: function() {
+            var model = this.modelFor('octopus.new');
+            if (model && model.get('isDirty') && !model.get('isSaving')) {
+                model.rollback();
+            }
+        }
+    });
+
+    app.OctopusNewController = Ember.ObjectController.extend({
+        actions: {
+            submit: function() {
+                this.model.save();
+                this.transitionTo('octopus');
+            },
+        }
+    });
+
     app.Store = DS.Store.extend({
       adapter: DS.FixtureAdapter
     });
+
+
+  app.Router.map(function() {
+    this.route("login");
+    this.route("register", {path: "/register"});
+    this.route("registerWelcome", {path: "/register/welcome"});
+    this.resource('octopus', {path: "/octopus"}, function() {
+        this.route("new");
+        this.route("edit", {path: "/:id"});
+
+    });
+  });
 
   return app;
 })();
