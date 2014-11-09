@@ -3,6 +3,8 @@
     {{input adminUsername disabled=isEdit}}
     {{input adminPassword as="password" disabled=isEdit}}
     {{#if isNew}}
-        {{submit Create as='button'}}
+        <div class="row">
+            {{submit Create as='button'}}
+        </div>
     {{/if}}
 {{/form-for}}

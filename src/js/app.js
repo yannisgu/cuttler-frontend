@@ -5,11 +5,24 @@ window.App = (function(){
         labelClass: 'label'
     });
 
+
   var app = Ember.Application.create(
     {
       rootElement: "#application"
     }
   );
+
+
+    app.Router.map(function() {
+      this.route("login");
+      this.route("register", {path: "/register"});
+      this.route("registerWelcome", {path: "/register/welcome"});
+      this.resource('octopus', {path: "/octopus"}, function() {
+          this.route("edit", {path: "/:id"});
+          this.route("new", {path: "/new"});
+
+      });
+    });
 
   app.IndexRoute = Ember.Route.extend({
     beforeModel: function() {
@@ -126,15 +139,6 @@ window.App = (function(){
     });
 
 
-    app.OctopusEditRoute = Ember.Route.extend({
-        model: function(params) {
-            return this.store.find('octopusTenant', params.id);
-        }
-    });
-
-    app.OctopusEditController = Ember.ObjectController.extend({
-        isEdit: true
-    });
 
     app.OctopusTenant = DS.Model.extend({
       name: DS.attr('string'),
@@ -156,9 +160,12 @@ window.App = (function(){
              return this.store.createRecord('octopusTenant');
          },
          isNew: true,
+         isEdit: false,
 
-        renderTemplate: function() {
-            this.render('octopus/edit');
+        renderTemplate: function(controller, model) {
+            this.render('octopus/edit', {
+                controller: controller
+            });
         },
         deactivate: function() {
             var model = this.modelFor('octopus.new');
@@ -169,6 +176,7 @@ window.App = (function(){
     });
 
     app.OctopusNewController = Ember.ObjectController.extend({
+        isEdit: false,
         actions: {
             submit: function() {
                 this.model.save();
@@ -177,21 +185,22 @@ window.App = (function(){
         }
     });
 
+
+        app.OctopusEditRoute = Ember.Route.extend({
+            model: function(params) {
+                return this.store.find('octopusTenant', params.id);
+            }
+        });
+
+        app.OctopusEditController = Ember.ObjectController.extend({
+            isEdit: true
+        });
+
     app.Store = DS.Store.extend({
       adapter: DS.FixtureAdapter
     });
 
 
-  app.Router.map(function() {
-    this.route("login");
-    this.route("register", {path: "/register"});
-    this.route("registerWelcome", {path: "/register/welcome"});
-    this.resource('octopus', {path: "/octopus"}, function() {
-        this.route("new");
-        this.route("edit", {path: "/:id"});
-
-    });
-  });
 
   return app;
 })();
